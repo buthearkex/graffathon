@@ -47,19 +47,33 @@ void draw() {
     // created.
     double treeLenDelta = moonlander.getValue("treeLenDelta");
     double suchFractals = moonlander.getValue("suchFractals");
+    double phase = moonlander.getValue("phase");
     //cam.rotateX(radians((float)bg_green));
     drawAxis();
-    drawFractalTree(treeLenDelta, suchFractals);
+    drawFractalTree(treeLenDelta, suchFractals, phase);
 }
 
 
 int unit = 4;
 float treeLen = 1;
-void drawFractalTree(double treeLenDelta, double suchFractals) {
+void drawFractalTree(double treeLenDelta, double suchFractals, double phase) {
   
     background(255);
     stroke(0);
     strokeWeight((float)suchFractals);
+    if(phase < 1){
+      background(255);
+      stroke(0);
+      strokeWeight((float)suchFractals);
+    }
+    else if(phase > 2 && phase < 2.5){
+      background(0);
+      stroke(0);
+      strokeWeight(1);
+    }
+    else if(phase > 2.5){
+      stroke(150, 0, 40);
+    }
     float asd = (float)treeLenDelta;
     int fractalAmount = (int)suchFractals;
     treeLen = treeLen + (float)treeLenDelta;
