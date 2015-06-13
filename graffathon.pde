@@ -44,7 +44,6 @@ void draw() {
     // This shows how you can query value of a track.
     // If track doesn't exist in Rocket, it's automatically
     // created.
-    double bg_green = moonlander.getValue("background_green");
     double treeLenDelta = moonlander.getValue("treeLenDelta");
     double suchFractals = moonlander.getValue("suchFractals");
     //cam.rotateX(radians((float)bg_green));
@@ -53,19 +52,45 @@ void draw() {
 }
 
 
-int unit = 10;
+int unit = 4;
+float treeLen = 1;
 void drawFractalTree(double treeLenDelta, double suchFractals) {
   
     background(255);
     stroke(0);
     float asd = (float)treeLenDelta;
     int fractalAmount = (int)suchFractals;
+    treeLen = treeLen + (float)treeLenDelta;
+    println(treeLen);
     
-    for (int x=0; x<= fractalAmount; x += 1) {
-      float nextX = (float) x*unit;
-      line(0.0, asd, nextX, nextX, 0.0, 0.0);
+    //trunk line
+    line(0.0, 0.0, 0.0, 0.0, treeLen, 0.0);
+    
+    //branches
+    if(treeLen > unit){
+      branch(treeLen, new BranchingPoint(0.0, treeLen, 0.0));
     }
-    
+}
+
+void branch(float ticker, BranchingPoint bp){
+  if(ticker < unit*2){
+    line(bp.x, bp.y, bp.z, bp.x + ticker, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - ticker, bp.y, bp.z);
+  }
+  else{
+    line(bp.x, bp.y, bp.z, bp.x + unit*2, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*2, bp.y, bp.z);
+
+    line(bp.x + unit*2, bp.y, bp.z, bp.x + unit*2, bp.y + ticker, bp.z);
+    line(bp.x - unit*2, bp.y, bp.z, bp.x - unit*2, bp.y + ticker, bp.z);
+  }
+}
+
+class BranchingPoint{
+  float x, y, z;
+  BranchingPoint(float x1, float y1, float z1){
+    x = x1; y = y1; z = z1;
+  }
 }
 
 void drawAxis(){
