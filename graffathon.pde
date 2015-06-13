@@ -45,10 +45,22 @@ void draw() {
     // If track doesn't exist in Rocket, it's automatically
     // created.
     double bg_green = moonlander.getValue("background_green");
-    cam.rotateX(radians((float)bg_green));
+    double treeLenDelta = moonlander.getValue("treeLenDelta");
+    double suchFractals = moonlander.getValue("suchFractals");
+    //cam.rotateX(radians((float)bg_green));
     drawAxis();
+    drawFractalTree(treeLenDelta, suchFractals);
 }
 
+
+int unit = 10;
+void drawFractalTree(double treeLenDelta, double suchFractals) {
+  
+    background(255);
+    stroke(0);
+    float asd = (float)treeLenDelta;
+    line(0.0, asd, 0.0, 0.0, 0.0, 0.0);
+}
 
 void drawAxis(){
   //x-axis 
