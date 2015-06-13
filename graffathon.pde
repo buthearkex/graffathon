@@ -14,7 +14,7 @@ void setup() {
     // - soundtrack filename (relative to sketch's folder)
     // - beats per minute in the song
     // - how many rows in Rocket correspond to one beat
-    moonlander = Moonlander.initWithSoundtrack(this, "../common/tekno_127bpm.mp3", 127, 8);
+    moonlander = Moonlander.initWithSoundtrack(this, "Dreamland original Mix By Decepticons (FREE Creative Commons Music Allowed For Reuse & Monetization).mp3", 127, 8);
 
     // Other initialization code goes here.
     size(800, 800, P3D);
@@ -45,9 +45,7 @@ void draw() {
     // If track doesn't exist in Rocket, it's automatically
     // created.
     double bg_green = moonlander.getValue("background_green");
-    
     cam.rotateX(radians((float)bg_green));
-    
     drawAxis();
 }
 
@@ -61,6 +59,6 @@ void drawAxis(){
   line(0,0,0,100,0,0);
   //z-axis
   stroke(250);
-  line(0,0,0,0,100,0);
+  line(0,0,0,0,0,100);
 }
 
