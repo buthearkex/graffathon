@@ -1,35 +1,47 @@
 <sync rows="128">
 	<tracks>
 		<track name="background_red">
-			<key interpolation="0" row="0" value="2"/>
-			<key interpolation="0" row="1" value="0.8"/>
-			<key interpolation="0" row="8" value="2"/>
-			<key interpolation="0" row="9" value="0.8"/>
-			<key interpolation="0" row="16" value="2"/>
-			<key interpolation="0" row="17" value="0.8"/>
-			<key interpolation="0" row="24" value="2"/>
-			<key interpolation="0" row="25" value="0.8"/>
-			<key interpolation="0" row="32" value="2"/>
-			<key interpolation="0" row="33" value="0.8"/>
-			<key interpolation="0" row="40" value="2"/>
-			<key interpolation="0" row="41" value="0.8"/>
-			<key interpolation="0" row="48" value="2"/>
-			<key interpolation="0" row="49" value="0.8"/>
-			<key interpolation="0" row="56" value="2"/>
-			<key interpolation="0" row="57" value="0.8"/>
-			<key interpolation="0" row="64" value="2"/>
-			<key interpolation="0" row="65" value="0.8"/>
-			<key interpolation="0" row="72" value="2"/>
-			<key interpolation="0" row="73" value="0.8"/>
-			<key interpolation="0" row="80" value="2"/>
-			<key interpolation="0" row="81" value="0.8"/>
+			<key interpolation="0" value="2" row="0"/>
+			<key interpolation="0" value="0.8" row="1"/>
+			<key interpolation="0" value="2" row="8"/>
+			<key interpolation="0" value="0.8" row="9"/>
+			<key interpolation="0" value="2" row="16"/>
+			<key interpolation="0" value="0.8" row="17"/>
+			<key interpolation="0" value="2" row="24"/>
+			<key interpolation="0" value="0.8" row="25"/>
+			<key interpolation="0" value="2" row="32"/>
+			<key interpolation="0" value="0.8" row="33"/>
+			<key interpolation="0" value="2" row="40"/>
+			<key interpolation="0" value="0.8" row="41"/>
+			<key interpolation="0" value="2" row="48"/>
+			<key interpolation="0" value="0.8" row="49"/>
+			<key interpolation="0" value="2" row="56"/>
+			<key interpolation="0" value="0.8" row="57"/>
+			<key interpolation="0" value="2" row="64"/>
+			<key interpolation="0" value="0.8" row="65"/>
+			<key interpolation="0" value="2" row="72"/>
+			<key interpolation="0" value="0.8" row="73"/>
+			<key interpolation="0" value="2" row="80"/>
+			<key interpolation="0" value="0.8" row="81"/>
 		</track>
-		<track name="background_green"/>
+		<track name="background_green">
+			<key interpolation="0" value="100" row="0"/>
+			<key interpolation="0" value="0" row="8"/>
+			<key interpolation="0" value="100" row="64"/>
+			<key interpolation="0" value="0" row="72"/>
+			<key interpolation="0" value="0" row="73"/>
+			<key interpolation="0" value="100" row="96"/>
+			<key interpolation="0" value="0" row="104"/>
+			<key interpolation="0" value="100" row="112"/>
+			<key interpolation="0" value="0" row="116"/>
+			<key interpolation="0" value="100" row="120"/>
+			<key interpolation="0" value="0" row="124"/>
+		</track>
 		<track name="background_blue"/>
 		<track name="rotate">
-			<key interpolation="1" row="0" value="1"/>
-			<key interpolation="2" row="8" value="5"/>
-			<key interpolation="0" row="16" value="0"/>
+			<key interpolation="1" value="1" row="0"/>
+			<key interpolation="2" value="5" row="8"/>
+			<key interpolation="0" value="0" row="16"/>
 		</track>
 	</tracks>
 	<bookmarks/>
