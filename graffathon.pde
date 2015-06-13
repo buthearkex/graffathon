@@ -20,6 +20,7 @@ void setup() {
     size(800, 800, P3D);
     frameRate(60); 
     background(0);
+    
 
 
 
@@ -58,6 +59,7 @@ void drawFractalTree(double treeLenDelta, double suchFractals) {
   
     background(255);
     stroke(0);
+    strokeWeight((float)suchFractals);
     float asd = (float)treeLenDelta;
     int fractalAmount = (int)suchFractals;
     treeLen = treeLen + (float)treeLenDelta;
@@ -66,37 +68,145 @@ void drawFractalTree(double treeLenDelta, double suchFractals) {
     if(treeLen > unit){
       branch(0, (float)treeLen, new BranchingPoint(0.0, unit, 0.0));
     }
+    cam.rotateX(radians((float)treeLenDelta)*1);
+    cam.rotateZ(radians((float)treeLenDelta)*1);
+    cam.rotateY(radians((float)treeLenDelta)*1);
 }
 
+float location = 0;
 void branch(float tick, float ticker, BranchingPoint bp){
-  if(tick > 40) return;
+  if(tick > 10) {
+    return;
+  };
+  
+  ticker = ticker + 1;
 
   //kasvattaa vain x leveyttä
-  if(ticker < unit*tick){
+  /*if(ticker < unit*tick){
     line(bp.x, bp.y, bp.z, bp.x + ticker, bp.y, bp.z);
     line(bp.x, bp.y, bp.z, bp.x - ticker, bp.y, bp.z);
   }
   //x pysähtynyt, kasvattaa vain y korkeutta
-  else if(ticker < unit*tick*2){
-    line(bp.x, bp.y, bp.z, bp.x + unit*tick*2, bp.y, bp.z);
-    line(bp.x, bp.y, bp.z, bp.x - unit*tick*2, bp.y, bp.z);
+  else 
+  */if(ticker < unit*tick*2){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
 
-    line(bp.x + unit*tick*2, bp.y, bp.z, bp.x + unit*tick*2, bp.y + ticker, bp.z);
-    line(bp.x - unit*tick*2, bp.y, bp.z, bp.x - unit*tick*2, bp.y + ticker, bp.z);
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + ticker, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + ticker, bp.z);
   }
   //pysähtynyt, tekee vain uusia kerroksia
-  else{
-    line(bp.x, bp.y, bp.z, bp.x + unit*tick*2, bp.y, bp.z);
-    line(bp.x, bp.y, bp.z, bp.x - unit*tick*2, bp.y, bp.z);
+  else if (ticker > unit*tick*2 && ticker < 100){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
 
-    line(bp.x + unit*tick*2, bp.y, bp.z, bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z);
-    line(bp.x - unit*tick*2, bp.y, bp.z, bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z);
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
 
-    stroke(150);
-    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z));
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
     stroke(0);
-    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z));
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
+  }
+  else if (ticker > 100 && ticker < 125){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
 
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
+  }
+  else if (ticker > 125 && ticker < 150){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
+    
+    
+  }
+    else if (ticker > 150 && ticker < 175){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
+  }
+  else if (ticker > 175 && ticker < 200){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
+    
+    
+  }
+    else if (ticker > 200 && ticker < 225){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
+  }
+  else if (ticker > 225 && ticker < 250){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
+    
+    
+  }
+    else if (ticker > 250 && ticker < 275){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
+  }
+  else if (ticker > 275 && ticker < 300){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
+    
+    
+  }
+  else {
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick, bp.y, bp.z);
+
+    line(bp.x + unit*tick, bp.y, bp.z, bp.x + unit*tick, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick, bp.y, bp.z, bp.x - unit*tick, bp.y + unit*tick*2, bp.z);
+
+    stroke(150, 0, 40);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z + 20));
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z - 20));
   }
 
 
