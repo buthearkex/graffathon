@@ -61,29 +61,45 @@ void drawFractalTree(double treeLenDelta, double suchFractals) {
     float asd = (float)treeLenDelta;
     int fractalAmount = (int)suchFractals;
     treeLen = treeLen + (float)treeLenDelta;
-    println(treeLen);
-    
-    //trunk line
-    line(0.0, 0.0, 0.0, 0.0, treeLen, 0.0);
     
     //branches
     if(treeLen > unit){
-      branch(treeLen, new BranchingPoint(0.0, treeLen, 0.0));
+      branch(0, (float)treeLen, new BranchingPoint(0.0, unit, 0.0));
     }
 }
 
-void branch(float ticker, BranchingPoint bp){
-  if(ticker < unit*2){
+void branch(float tick, float ticker, BranchingPoint bp){
+  if(tick > 40) return;
+
+  //kasvattaa vain x leveyttä
+  if(ticker < unit*tick){
     line(bp.x, bp.y, bp.z, bp.x + ticker, bp.y, bp.z);
     line(bp.x, bp.y, bp.z, bp.x - ticker, bp.y, bp.z);
   }
-  else{
-    line(bp.x, bp.y, bp.z, bp.x + unit*2, bp.y, bp.z);
-    line(bp.x, bp.y, bp.z, bp.x - unit*2, bp.y, bp.z);
+  //x pysähtynyt, kasvattaa vain y korkeutta
+  else if(ticker < unit*tick*2){
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick*2, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick*2, bp.y, bp.z);
 
-    line(bp.x + unit*2, bp.y, bp.z, bp.x + unit*2, bp.y + ticker, bp.z);
-    line(bp.x - unit*2, bp.y, bp.z, bp.x - unit*2, bp.y + ticker, bp.z);
+    line(bp.x + unit*tick*2, bp.y, bp.z, bp.x + unit*tick*2, bp.y + ticker, bp.z);
+    line(bp.x - unit*tick*2, bp.y, bp.z, bp.x - unit*tick*2, bp.y + ticker, bp.z);
   }
+  //pysähtynyt, tekee vain uusia kerroksia
+  else{
+    line(bp.x, bp.y, bp.z, bp.x + unit*tick*2, bp.y, bp.z);
+    line(bp.x, bp.y, bp.z, bp.x - unit*tick*2, bp.y, bp.z);
+
+    line(bp.x + unit*tick*2, bp.y, bp.z, bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z);
+    line(bp.x - unit*tick*2, bp.y, bp.z, bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z);
+
+    stroke(150);
+    branch(tick+1, ticker, new BranchingPoint (bp.x + unit*tick*2, bp.y + unit*tick*2, bp.z));
+    stroke(0);
+    branch(tick+1, ticker, new BranchingPoint (bp.x - unit*tick*2, bp.y + unit*tick*2, bp.z));
+
+  }
+
+
 }
 
 class BranchingPoint{
