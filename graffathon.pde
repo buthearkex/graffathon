@@ -18,19 +18,15 @@ void setup() {
 
     // Other initialization code goes here.
     size(800, 800, P3D);
-      frameRate(60); 
-noFill();
-background(0);
-stroke(255);
-camera(10.0, 10.0, 10.0, 0.0, 0.0, 0.0, 
-       0.0, 1.0, 0.0);
-       drawAxis();
-box(10);
+    frameRate(60); 
+    background(0);
 
-  cam = new PeasyCam(this, 0, 200, 0, 1000);
+
+
+    cam = new PeasyCam(this, 0, 200, 0, 1000);
   //cam.rotateX(radians(20));
   //cam.setActive(false);
-    cam.setMaximumDistance(1000);
+    cam.setMaximumDistance(500);
 
     // Last thing in setup; start Moonlander. This either
     // connects to Rocket (development mode) or loads data 
@@ -40,7 +36,7 @@ box(10);
 }
 
 void draw() {
-    
+    background(0);
     // Handles communication with Rocket. In player mode
     // does nothing. Must be called at the beginning of draw().
     moonlander.update();
@@ -48,7 +44,9 @@ void draw() {
     // This shows how you can query value of a track.
     // If track doesn't exist in Rocket, it's automatically
     // created.
-    double bg_red = moonlander.getValue("background_red");
+    double bg_green = moonlander.getValue("background_green");
+    
+    cam.rotateX(radians((float)bg_green));
     
     drawAxis();
 }
@@ -56,7 +54,7 @@ void draw() {
 
 void drawAxis(){
   //x-axis 
-  stroke(90);
+  stroke(190);
   line(0, 100, 0, 0, 0, 0);
   //y-axis
   stroke(180);
