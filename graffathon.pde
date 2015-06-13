@@ -59,7 +59,13 @@ void drawFractalTree(double treeLenDelta, double suchFractals) {
     background(255);
     stroke(0);
     float asd = (float)treeLenDelta;
-    line(0.0, asd, 0.0, 0.0, 0.0, 0.0);
+    int fractalAmount = (int)suchFractals;
+    
+    for (int x=0; x<= fractalAmount; x += 1) {
+      float nextX = (float) x*unit;
+      line(0.0, asd, nextX, nextX, 0.0, 0.0);
+    }
+    
 }
 
 void drawAxis(){
