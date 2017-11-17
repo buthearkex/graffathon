@@ -1,3 +1,5 @@
+This repo is for a graphics hackathon at Aalto 2015.
+
 # Moonlander_Basics
 
 This example showcases the basic Moonlander API and shows how you can create a simple effect synchronization to music in Rocket.
